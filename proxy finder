@@ -1,0 +1,28 @@
+**Extension: Linwize Unblocker Extension**
+
+**manifest.json**
+```json
+{
+"manifest_version": 2,
+"name": "Linwize Unblocker",
+"version": "1.0",
+"description": "An extension to unblock Linwize.",
+"icons": {},
+"permissions": ["webRequest", "webRequestBlocking", "http://*/*", "https://*/*"],
+"background": {
+"scripts": ["background.js"],
+"persistent": false
+}
+}
+```
+
+**background.js**
+```javascript
+chrome.webRequest.onBeforeRequest.addListener(
+function(details) {
+return { cancel: false };
+},
+{ urls: ["*://*.linwize.com/*"] },
+["blocking"]
+);
+```
